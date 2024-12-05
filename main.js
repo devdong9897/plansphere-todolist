@@ -107,3 +107,14 @@ const todoRender = () => {
 const randomIDGenerate = () => {
   return "_" + Math.random().toString(36).substr(2, 9);
 };
+
+// 수정
+const editTask = (id) => {
+  for (let i = 0; i < todoList.length; i++) {
+    if (todoList[i].id === id) {
+      todoList[i].isEditing = true;
+      break;
+    }
+  }
+  todoRender();
+};
