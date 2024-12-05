@@ -118,3 +118,16 @@ const editTask = (id) => {
   }
   todoRender();
 };
+
+// 수정된걸 저장
+const saveTask = (id) => {
+  const editValue = document.getElementById(`edit-${id}`).value;
+  for (let i = 0; i < todoList.length; i++) {
+    if (todoList[i].id === id) {
+      todoList[i].todoContent = editValue;
+      todoList[i].isEditing = false;
+      break;
+    }
+  }
+  todoRender();
+};
