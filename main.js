@@ -142,3 +142,14 @@ const cancelEdit = (id) => {
   }
   todoRender();
 };
+
+// 삭제
+const todoDelete = (id) => {
+  for (let i = 0; i < todoList.length; i++) {
+    if (todoList[i].id === id) {
+      todoList.splice(i, 1);
+      break;
+    }
+  }
+  todoRender();
+};
