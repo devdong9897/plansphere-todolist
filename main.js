@@ -62,3 +62,48 @@ const setWeatherImage = (condition) => {
   weatherContainer.style.backgroundSize = "cover";
   weatherContainer.style.backgroundPosition = "center";
 };
+
+// todo DOM
+const todoButton = document.getElementById("todo-button");
+const todoInput = document.getElementById("todo-input");
+const todoList = [];
+
+const addTask = () => {
+  const task = {
+    id: randomIDGenerate(),
+    todoContent: todoInput.value,
+    isComplete: false,
+    isEditing: false,
+  };
+  todoList.push(task);
+  todoInput.value = "";
+  todoRender();
+};
+
+todoButton.addEventListener("click", addTask);
+
+const todoRender = () => {
+  let resultHTML = "";
+
+  for (let i = 0; i < todoList.length; i++) {
+    if (todoList[i].isEditing) {
+      resultHTML += ` <div class="list">
+          <input type="text" value="${todoList[i].todoContent}" id="edit-${todoList[i].id}" />
+          <button onclick="saveTask('${todoList[i].id}')">완료</button>
+          <button onclick="cancelEdit('${todoList[i].id}')">취소</button>
+        </div>`;
+    } else {
+      resultHTML += `<div class="list">
+            <p>${todoList[i].todoContent}</p>
+            <button onclick="editTask('${todoList[i].id}')">수정</button>
+            <button onclick="todoDelete('${todoList[i].id}')">삭제</button>
+          </div>`;
+    }
+  }
+
+  document.getElementById("tesk-board").innerHTML = resultHTML;
+};
+
+const randomIDGenerate = () => {
+  return "_" + Math.random().toString(36).substr(2, 9);
+};
