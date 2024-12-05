@@ -131,3 +131,14 @@ const saveTask = (id) => {
   }
   todoRender();
 };
+
+// 수정취소
+const cancelEdit = (id) => {
+  for (let i = 0; i < todoList.length; i++) {
+    if (todoList[i].id === id) {
+      todoList[i].isEditing = false;
+      break;
+    }
+  }
+  todoRender();
+};
