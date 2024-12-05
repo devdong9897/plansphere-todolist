@@ -1,0 +1,166 @@
+body {
+  background-color: #faf6e3;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container h1 {
+  text-align: center;
+  color: #257180;
+  position: absolute;
+  top: 20px;
+}
+
+.container .todo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  margin-top: 50px;
+}
+
+.container .todo .wrapper {
+}
+
+.container .todo .wrapper .weather {
+  width: 250px;
+  height: 250px;
+  border: 3px solid #fff;
+  border-radius: 15px;
+  padding: 10px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Jua", sans-serif;
+}
+
+.container .todo .wrapper .weather #city {
+  font-size: 18px;
+  margin: 0;
+}
+
+.container .todo .wrapper .weather #temp {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.container .todo .wrapper .weather img {
+  width: 100px;
+  height: 100px;
+}
+
+.container .todo .wrapper .weather #description {
+  margin: 0;
+}
+
+.container .todo .wrapper .calendar {
+  width: 250px;
+  height: 250px;
+  border-radius: 15px;
+  background-color: #b59f78;
+  margin-top: 20px;
+  border: 3px solid #fff;
+  padding: 10px;
+}
+
+.container .todo .wrapper .calendar p {
+  margin-top: 0;
+}
+
+.container .todo .todolist {
+  width: 500px;
+  height: 610px;
+  border-radius: 15px;
+  background-color: #2a3663;
+  border: 3px solid #fff;
+  padding: 10px;
+  display: flex; /* Flexbox로 레이아웃 설정 */
+  flex-direction: column; /* 수직 정렬 */
+  justify-content: flex-start; /* 내용은 위로 정렬 (수직 방향) */
+}
+
+.container .todo .todolist h2 {
+  text-align: center;
+  color: #fff;
+  margin: 20px 0 0 0;
+}
+
+.container .todo .todolist .input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto 0;
+  width: 100%;
+}
+
+.container .todo .todolist input {
+  flex-grow: 1;
+  height: 30px;
+  text-align: center;
+  padding: 0 10px;
+  font-size: 18px;
+  font-family: "Jua", sans-serif;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.container .todo .todolist .add-btn {
+  background-color: #257180;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.container .todo .todolist .add-btn:hover {
+  background-color: #1f5f60;
+}
+
+.container .todo .todolist .list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.container .todo .todolist .list p {
+  font-size: 18px;
+  color: #fff;
+  margin: 0;
+  font-size: 16px;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.container .todo .todolist .list .button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.container .todo .todolist .list button {
+  background-color: #257180;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 5px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlanSphere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./image/logo.png">
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./main.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>PlanSphere</h1>
+      <div class="todo">
+        <div class="wrapper">
+          <!-- 날씨 -->
+          <div class="weather" id="weather-container">
+            <p id="city"></p>
+            <h2 id="temp"></h2>
+            <img src="" alt="" />
+            <h2 id="description"></h2>
+          </div>
+          <!-- 달력 -->
+          <div class="calendar"></div>
+        </div>
+        <!-- todolist -->
+        <div class="todolist">
+          <h2>나만의 할 일 리스트</h2>
+          <div class="input-container">
+            <input
+              type="text"
+              placeholder="할 일을 입력하세요"
+              id="todo-input"
+            />
+            <button class="add-btn" id="todo-button">+</button>
+          </div>
+          <div id="tesk-board">
+            <!-- <div class="list">
+              <p>청소하기</p>
+              <button>수정</button>
+              <button>완료</button>
+              <button>삭제</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
