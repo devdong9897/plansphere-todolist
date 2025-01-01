@@ -31,36 +31,6 @@ const weatherRender = (data) => {
 
   const weatherIcon = data.weather[0].icon;
   weatherImage.src = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
-
-  const weatherCondition = data.weather[0].main.toLowerCase();
-  setWeatherImage(weatherCondition);
-};
-
-const setWeatherImage = (condition) => {
-  let imageUrl = "";
-  switch (condition) {
-    case "clear":
-      imageUrl = "./image/clear.gif";
-      break;
-    case "rain":
-      imageUrl = "./image/rain.gif";
-      break;
-    case "clouds":
-      imageUrl = "./image/clouds.gif";
-      break;
-    case "snow":
-      imageUrl = "./image/snow.gif";
-      break;
-    case "thunderstorm":
-      imageUrl = "./image/thunderstorm.gif";
-      break;
-    default:
-      imageUrl = "./image/gradi.avif";
-  }
-
-  weatherContainer.style.backgroundImage = `url(${imageUrl})`;
-  weatherContainer.style.backgroundSize = "cover";
-  weatherContainer.style.backgroundPosition = "center";
 };
 
 // todo DOM
@@ -153,3 +123,53 @@ const todoDelete = (id) => {
   }
   todoRender();
 };
+
+// 달력 렌더링 함수
+const renderCalendar = (month, year) => {
+  const calendarContainer = document.getElementById("calendar-container");
+
+  // 한 달의 첫 날의 요일 (0: Sunday, 1: Monday, ..., 6: Saturday)
+  const firstDay = new Date(year, month, 1).getDay();
+
+  // 해당 월의 마지막 날짜
+  const lastDate = new Date(year, month + 1, 0).getDate();
+
+  // 현재 날짜
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  // 달력 헤더 (일, 월, 화, 수, 목, 금, 토)
+  const header = ["일", "월", "화", "수", "목", "금", "토"];
+
+  // 년도와 월 표시
+  let calendarHTML = `<div class="year-month">${year}년 ${month + 1}월</div>`;
+
+  // 헤더 추가 (요일을 한 줄로 배치)
+  calendarHTML += `<div class="header">${header.map(day => `<div class="day">${day}</div>`).join('')}</div>`;
+
+  // 빈 날짜들 추가 (첫 주의 앞부분)
+  for (let i = 0; i < firstDay; i++) {
+    calendarHTML += "<div class='day empty'></div>"; // 빈 칸
+  }
+
+  // 날짜 추가
+  for (let date = 1; date <= lastDate; date++) {
+    let dayClass = "day";
+    if (date === currentDay && month === currentMonth && year === currentYear) {
+      dayClass += " today"; // 오늘 날짜 강조
+    }
+    calendarHTML += `<div class='${dayClass}'>${date}</div>`;
+  }
+
+  // 달력 내용 삽입
+  calendarContainer.innerHTML = calendarHTML;
+};
+
+// 현재 날짜로 달력 렌더링
+const currentDate = new Date();
+const currentMonth = currentDate.getMonth(); // 0: 1월, 1: 2월, ...
+const currentYear = currentDate.getFullYear();
+
+renderCalendar(currentMonth, currentYear);
