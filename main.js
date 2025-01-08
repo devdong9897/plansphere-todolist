@@ -52,6 +52,12 @@ const addTask = () => {
 
 todoButton.addEventListener("click", addTask);
 
+todoInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    addTask();
+  }
+});
+
 const todoRender = () => {
   let resultHTML = "";
 
@@ -74,6 +80,7 @@ const todoRender = () => {
   document.getElementById("tesk-board").innerHTML = resultHTML;
 };
 
+// 고유 ID
 const randomIDGenerate = () => {
   return "_" + Math.random().toString(36).substr(2, 9);
 };
@@ -128,7 +135,7 @@ const todoDelete = (id) => {
 const renderCalendar = (month, year) => {
   const calendarContainer = document.getElementById("calendar-container");
 
-  // 한 달의 첫 날의 요일 (0: Sunday, 1: Monday, ..., 6: Saturday)
+  // 한 달의 첫 날의 요일
   const firstDay = new Date(year, month, 1).getDay();
 
   // 해당 월의 마지막 날짜
@@ -140,25 +147,27 @@ const renderCalendar = (month, year) => {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
-  // 달력 헤더 (일, 월, 화, 수, 목, 금, 토)
+  // 달력 헤더
   const header = ["일", "월", "화", "수", "목", "금", "토"];
 
   // 년도와 월 표시
   let calendarHTML = `<div class="year-month">${year}년 ${month + 1}월</div>`;
 
-  // 헤더 추가 (요일을 한 줄로 배치)
-  calendarHTML += `<div class="header">${header.map(day => `<div class="day">${day}</div>`).join('')}</div>`;
+  // 헤더 추가
+  calendarHTML += `<div class="header">${header
+    .map((day) => `<div class="day">${day}</div>`)
+    .join("")}</div>`;
 
-  // 빈 날짜들 추가 (첫 주의 앞부분)
+  // 빈 날짜들 추가
   for (let i = 0; i < firstDay; i++) {
-    calendarHTML += "<div class='day empty'></div>"; // 빈 칸
+    calendarHTML += "<div class='day empty'></div>";
   }
 
   // 날짜 추가
   for (let date = 1; date <= lastDate; date++) {
     let dayClass = "day";
     if (date === currentDay && month === currentMonth && year === currentYear) {
-      dayClass += " today"; // 오늘 날짜 강조
+      dayClass += " today";
     }
     calendarHTML += `<div class='${dayClass}'>${date}</div>`;
   }
@@ -169,7 +178,7 @@ const renderCalendar = (month, year) => {
 
 // 현재 날짜로 달력 렌더링
 const currentDate = new Date();
-const currentMonth = currentDate.getMonth(); // 0: 1월, 1: 2월, ...
+const currentMonth = currentDate.getMonth();
 const currentYear = currentDate.getFullYear();
 
 renderCalendar(currentMonth, currentYear);
