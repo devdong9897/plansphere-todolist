@@ -36,7 +36,19 @@ const weatherRender = (data) => {
 // todo DOM
 const todoButton = document.getElementById("todo-button");
 const todoInput = document.getElementById("todo-input");
-const todoList = [];
+let todoList = [];
+
+const saveTodoLocalStorage = () => {
+  localStorage.setItem("todos", JSON.stringify(todoList));
+};
+
+const getTodoLocalStorage = () => {
+  const getTodo = localStorage.getItem("todos");
+  if (getTodo) {
+    todoList = JSON.parse(getTodo);
+    todoRender();
+  }
+};
 
 const addTask = () => {
   const task = {
@@ -47,6 +59,7 @@ const addTask = () => {
   };
   todoList.push(task);
   todoInput.value = "";
+  saveTodoLocalStorage();
   todoRender();
 };
 
@@ -93,6 +106,7 @@ const editTask = (id) => {
       break;
     }
   }
+  saveTodoLocalStorage();
   todoRender();
 };
 
@@ -106,6 +120,7 @@ const saveTask = (id) => {
       break;
     }
   }
+  saveTodoLocalStorage();
   todoRender();
 };
 
@@ -117,6 +132,7 @@ const cancelEdit = (id) => {
       break;
     }
   }
+  saveTodoLocalStorage();
   todoRender();
 };
 
@@ -128,6 +144,7 @@ const todoDelete = (id) => {
       break;
     }
   }
+  saveTodoLocalStorage();
   todoRender();
 };
 
@@ -182,3 +199,5 @@ const currentMonth = currentDate.getMonth();
 const currentYear = currentDate.getFullYear();
 
 renderCalendar(currentMonth, currentYear);
+
+getTodoLocalStorage();
