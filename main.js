@@ -8,13 +8,24 @@ const weatherContainer = document.querySelector("#weather-container");
 const weatherImage = document.querySelector("#weather-container img");
 
 // 현재 위치
-navigator.geolocation.getCurrentPosition((position) => {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  console.log(lat, lon);
-  getWeather(lat, lon);
-});
+navigator.geolocation.getCurrentPosition(
+  (position) => {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    console.log(lat, lon);
+    getWeather(lat, lon);
+  },
+  (error) => {
+    // 위치를 찾을 수 없거나, 사용자가 위치를 허용하지 않은 경우
+    console.error("위치 정보를 가져오지 못했습니다:", error.message);
 
+    // 기본 위치로 날씨 정보 가져오기 (예: 서울)
+    alert(
+      "위치 정보를 허용하지 않으셨습니다. 기본 위치(서울)로 날씨를 보여드립니다."
+    );
+    getWeather(37.5665, 126.978); // 서울시의 위도, 경도
+  }
+);
 // 날씨 api
 const getWeather = async (lat, lon) => {
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
